@@ -24,9 +24,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$ADMIN->add('reports', new admin_externalpage('pooey',
-    get_string('pluginname', 'report_pooey'),
-    $CFG->wwwroot.'/report/pooey/index.php', 'report/pooey:view'));
+// $ADMIN->add('reports', new admin_externalpage('pooey',
+//     get_string('pluginname', 'report_pooey'),
+//    $CFG->wwwroot.'/report/pooey/index.php', 'report/pooey:view'));
 
 // No report settings.
 $settings = null;

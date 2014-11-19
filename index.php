@@ -24,15 +24,15 @@
  */
 
 require(__DIR__.'/../../config.php');
-require_once($CFG->libdir.'/adminlib.php');
+//require_once($CFG->libdir.'/adminlib.php');
 require_once($CFG->dirroot.'/report/pooey/locallib.php');
 
 $courseid = optional_param('course', null, PARAM_INT);
 
 if (is_null($courseid)) {
     // Site level reports
-    admin_externalpage_setup('pooey', '', null, '', array('pagelayout' => 'report'));
-    $charts = report_pooey_manager::get_site_charts();
+    // admin_externalpage_setup('pooey', '', null, '', array('pagelayout' => 'report'));
+    // $charts = report_pooey_manager::get_site_charts();
 
 } else {
     // Course level report
