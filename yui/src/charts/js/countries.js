@@ -1,6 +1,6 @@
-M.report_overviewstats = M.report_overviewstats || {};
-M.report_overviewstats.charts = M.report_overviewstats.charts || {};
-M.report_overviewstats.charts.countries = {
+M.report_pooey = M.report_pooey || {};
+M.report_pooey.charts = M.report_pooey.charts || {};
+M.report_pooey.charts.countries = {
 
     /**
      * @method init

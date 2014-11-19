@@ -16,7 +16,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package     report_overviewstats
+ * @package     report_pooey
  * @copyright   2013 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -28,7 +28,7 @@ require_once($CFG->libdir.'/accesslib.php');
 /**
  * Reports various users related charts and figures
  */
-class report_overviewstats_chart_logins extends report_overviewstats_chart {
+class report_pooey_chart_logins extends report_pooey_chart {
 
     /**
      * @return array
@@ -37,8 +37,8 @@ class report_overviewstats_chart_logins extends report_overviewstats_chart {
 
         $this->prepare_data();
 
-        $title = get_string('chart-logins', 'report_overviewstats');
-        $titleperday = get_string('chart-logins-perday', 'report_overviewstats');
+        $title = get_string('chart-logins', 'report_pooey');
+        $titleperday = get_string('chart-logins-perday', 'report_pooey');
 
         return array($title => array(
             $titleperday => html_writer::tag('div', '', array(
@@ -57,8 +57,8 @@ class report_overviewstats_chart_logins extends report_overviewstats_chart {
         $this->prepare_data();
 
         $page->requires->yui_module(
-            'moodle-report_overviewstats-charts',
-            'M.report_overviewstats.charts.logins.init',
+            'moodle-report_pooey-charts',
+            'M.report_pooey.charts.logins.init',
             array($this->data)
         );
     }

@@ -16,14 +16,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package     report_overviewstats
+ * @package     report_pooey
  * @copyright   2013 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component  = 'report_overviewstats';
+$plugin->component  = 'report_pooey';
 $plugin->release    = 'v1.1';
 $plugin->version    = 2014082200;
 $plugin->requires   = 2013051400; // Moodle v2.5.0

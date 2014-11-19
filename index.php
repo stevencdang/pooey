@@ -18,21 +18,21 @@
 /**
  * Displays some overview statistics for the site
  *
- * @package     report_overviewstats
+ * @package     report_pooey
  * @copyright   2013 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require(__DIR__.'/../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
-require_once($CFG->dirroot.'/report/overviewstats/locallib.php');
+require_once($CFG->dirroot.'/report/pooey/locallib.php');
 
 $courseid = optional_param('course', null, PARAM_INT);
 
 if (is_null($courseid)) {
     // Site level reports
-    admin_externalpage_setup('overviewstats', '', null, '', array('pagelayout' => 'report'));
-    $charts = report_overviewstats_manager::get_site_charts();
+    admin_externalpage_setup('pooey', '', null, '', array('pagelayout' => 'report'));
+    $charts = report_pooey_manager::get_site_charts();
 
 } else {
     // Course level report
@@ -40,20 +40,20 @@ if (is_null($courseid)) {
     $context = context_course::instance($course->id);
 
     require_login($course, false);
-    require_capability('report/overviewstats:view', $context);
+    require_capability('report/pooey:view', $context);
 
-    $PAGE->set_url(new moodle_url('/report/overviewstats/index.php', array('course' => $course->id)));
+    $PAGE->set_url(new moodle_url('/report/pooey/index.php', array('course' => $course->id)));
     $PAGE->set_pagelayout('report');
-    $PAGE->set_title($course->shortname.' - '.get_string('pluginname', 'report_overviewstats'));
-    $PAGE->set_heading($course->fullname.' - '.get_string('pluginname', 'report_overviewstats'));
+    $PAGE->set_title($course->shortname.' - '.get_string('pluginname', 'report_pooey'));
+    $PAGE->set_heading($course->fullname.' - '.get_string('pluginname', 'report_pooey'));
 
-    $charts = report_overviewstats_manager::get_course_charts($course);
+    $charts = report_pooey_manager::get_course_charts($course);
 }
 
 foreach ($charts as $chart) {
     $chart->inject_page_requirements($PAGE);
 }
 
-$output = $PAGE->get_renderer('report_overviewstats');
+$output = $PAGE->get_renderer('report_pooey');
 
 echo $output->charts($charts);

@@ -16,7 +16,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package     report_overviewstats
+ * @package     report_pooey
  * @category    admin
  * @copyright   2013 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -24,9 +24,9 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$ADMIN->add('reports', new admin_externalpage('overviewstats',
-    get_string('pluginname', 'report_overviewstats'),
-    $CFG->wwwroot.'/report/overviewstats/index.php', 'report/overviewstats:view'));
+$ADMIN->add('reports', new admin_externalpage('pooey',
+    get_string('pluginname', 'report_pooey'),
+    $CFG->wwwroot.'/report/pooey/index.php', 'report/pooey:view'));
 
 // No report settings.
 $settings = null;

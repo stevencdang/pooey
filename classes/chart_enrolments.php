@@ -16,7 +16,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package     report_overviewstats
+ * @package     report_pooey
  * @copyright   2013 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -28,7 +28,7 @@ require_once($CFG->libdir.'/accesslib.php');
 /**
  * Reports the new enrolments over time
  */
-class report_overviewstats_chart_enrolments extends report_overviewstats_chart {
+class report_pooey_chart_enrolments extends report_pooey_chart {
 
     /** @var int the number of currently enrolled users */
     protected $current = null;
@@ -40,9 +40,9 @@ class report_overviewstats_chart_enrolments extends report_overviewstats_chart {
 
         $this->prepare_data();
 
-        $title = get_string('chart-enrolments', 'report_overviewstats');
-        $titlemonth = get_string('chart-enrolments-month', 'report_overviewstats');
-        $titleyear = get_string('chart-enrolments-year', 'report_overviewstats');
+        $title = get_string('chart-enrolments', 'report_pooey');
+        $titlemonth = get_string('chart-enrolments-month', 'report_pooey');
+        $titleyear = get_string('chart-enrolments-year', 'report_pooey');
 
         return array($title => array(
             $titlemonth => html_writer::tag('div', '', array(
@@ -66,8 +66,8 @@ class report_overviewstats_chart_enrolments extends report_overviewstats_chart {
         $this->prepare_data();
 
         $page->requires->yui_module(
-            'moodle-report_overviewstats-charts',
-            'M.report_overviewstats.charts.enrolments.init',
+            'moodle-report_pooey-charts',
+            'M.report_pooey.charts.enrolments.init',
             array($this->data)
         );
     }

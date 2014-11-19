@@ -18,7 +18,7 @@
 /**
  * HTML rendering methods are defined here
  *
- * @package     report_overviewstats
+ * @package     report_pooey
  * @category    output
  * @copyright   2013 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -29,13 +29,13 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Overview statistics renderer
  */
-class report_overviewstats_renderer extends plugin_renderer_base {
+class report_pooey_renderer extends plugin_renderer_base {
 
     /**
      * Render the report charts
      *
-     * @see report_overviewstats_chart::get_content() for the expected structure
-     * @param array $charts list of {@link report_overviewstats_chart} instances
+     * @see report_pooey_chart::get_content() for the expected structure
+     * @param array $charts list of {@link report_pooey_chart} instances
      * @return string
      */
     public function charts(array $charts) {

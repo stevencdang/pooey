@@ -18,7 +18,7 @@
 /**
  * Report of the users' preferred languages
  *
- * @package     report_overviewstats
+ * @package     report_pooey
  * @copyright   2013 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Reports the number of users preferring a language for Moodle UI
  */
-class report_overviewstats_chart_langs extends report_overviewstats_chart {
+class report_pooey_chart_langs extends report_pooey_chart {
 
     /**
      * @return string
@@ -37,8 +37,8 @@ class report_overviewstats_chart_langs extends report_overviewstats_chart {
 
         $this->prepare_data();
 
-        $title = get_string('chart-langs', 'report_overviewstats');
-        $info = html_writer::div(get_string('chart-langs-info', 'report_overviewstats', count($this->data)), 'chartinfo');
+        $title = get_string('chart-langs', 'report_pooey');
+        $info = html_writer::div(get_string('chart-langs-info', 'report_pooey', count($this->data)), 'chartinfo');
         $chart = html_writer::tag('div', '', array(
             'id' => 'chart_langs',
             'class' => 'chartplaceholder',
@@ -56,8 +56,8 @@ class report_overviewstats_chart_langs extends report_overviewstats_chart {
         $this->prepare_data();
 
         $page->requires->yui_module(
-            'moodle-report_overviewstats-charts',
-            'M.report_overviewstats.charts.langs.init',
+            'moodle-report_pooey-charts',
+            'M.report_pooey.charts.langs.init',
             array($this->data)
         );
     }

@@ -16,7 +16,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package     report_overviewstats
+ * @package     report_pooey
  * @copyright   2013 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Base class for all charts to be reported
  */
-abstract class report_overviewstats_chart {
+abstract class report_pooey_chart {
 
     /** @var stdClass if this is course level report, holds the course record */
     protected $course = null;

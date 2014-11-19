@@ -16,7 +16,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package     report_overviewstats
+ * @package     report_pooey
  * @copyright   2013 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -28,7 +28,7 @@ require_once($CFG->libdir.'/coursecatlib.php');
 /**
  * Reports various users related charts and figures
  */
-class report_overviewstats_chart_courses extends report_overviewstats_chart {
+class report_pooey_chart_courses extends report_pooey_chart {
 
     /**
      * @return array
@@ -38,14 +38,14 @@ class report_overviewstats_chart_courses extends report_overviewstats_chart {
 
         $this->prepare_data();
 
-        $title = get_string('chart-courses', 'report_overviewstats');
-        $titlepercategory = get_string('chart-courses-percategory', 'report_overviewstats');
+        $title = get_string('chart-courses', 'report_pooey');
+        $titlepercategory = get_string('chart-courses-percategory', 'report_pooey');
 
         $percategorydata = new html_table();
         $percategorydata->head = array(
-            get_string('chart-courses-percategory-categoryname', 'report_overviewstats'),
-            get_string('chart-courses-percategory-coursesrecursive', 'report_overviewstats'),
-            get_string('chart-courses-percategory-coursesown', 'report_overviewstats'),
+            get_string('chart-courses-percategory-categoryname', 'report_pooey'),
+            get_string('chart-courses-percategory-coursesrecursive', 'report_pooey'),
+            get_string('chart-courses-percategory-coursesown', 'report_pooey'),
         );
         foreach ($this->data['percategory'] as $catdata) {
             $percategorydata->data[] = new html_table_row(array(
@@ -55,8 +55,8 @@ class report_overviewstats_chart_courses extends report_overviewstats_chart {
             ));
         }
 
-        $titlesizes = sprintf('%s %s', get_string('chart-courses-sizes', 'report_overviewstats'),
-            $OUTPUT->help_icon('chart-courses-sizes', 'report_overviewstats'));
+        $titlesizes = sprintf('%s %s', get_string('chart-courses-sizes', 'report_pooey'),
+            $OUTPUT->help_icon('chart-courses-sizes', 'report_pooey'));
 
         return array($title => array(
             $titlepercategory => html_writer::tag('div',
@@ -82,8 +82,8 @@ class report_overviewstats_chart_courses extends report_overviewstats_chart {
         $this->prepare_data();
 
         $page->requires->yui_module(
-            'moodle-report_overviewstats-charts',
-            'M.report_overviewstats.charts.courses.init',
+            'moodle-report_pooey-charts',
+            'M.report_pooey.charts.courses.init',
             array($this->data)
         );
     }

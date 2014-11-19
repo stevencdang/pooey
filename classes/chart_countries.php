@@ -16,7 +16,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package     report_overviewstats
+ * @package     report_pooey
  * @copyright   2013 David Mudrak <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,7 +26,7 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Reports the number of users from each country
  */
-class report_overviewstats_chart_countries extends report_overviewstats_chart {
+class report_pooey_chart_countries extends report_pooey_chart {
 
     /**
      * @return array
@@ -35,8 +35,8 @@ class report_overviewstats_chart_countries extends report_overviewstats_chart {
 
         $this->prepare_data();
 
-        $title = get_string('chart-countries', 'report_overviewstats');
-        $info = html_writer::div(get_string('chart-countries-info', 'report_overviewstats', count($this->data)), 'chartinfo');
+        $title = get_string('chart-countries', 'report_pooey');
+        $info = html_writer::div(get_string('chart-countries-info', 'report_pooey', count($this->data)), 'chartinfo');
         $chart = html_writer::tag('div', '', array(
             'id' => 'chart_countries',
             'class' => 'chartplaceholder',
@@ -54,8 +54,8 @@ class report_overviewstats_chart_countries extends report_overviewstats_chart {
         $this->prepare_data();
 
         $page->requires->yui_module(
-            'moodle-report_overviewstats-charts',
-            'M.report_overviewstats.charts.countries.init',
+            'moodle-report_pooey-charts',
+            'M.report_pooey.charts.countries.init',
             array($this->data)
         );
     }

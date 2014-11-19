@@ -41,4 +41,4 @@ $string['chart-langs'] = 'User preferred languages';
 $string['chart-langs-info'] = 'Number of different languages: {$a}';
 $string['chart-logins'] = 'Users logging in';
 $string['chart-logins-perday'] = 'Per day';
-$string['overviewstats:view'] = 'View overview statistics';
+$string['pooey:view'] = 'View overview statistics';
