@@ -31,8 +31,21 @@ $courseid = optional_param('course', null, PARAM_INT);
 
 if (is_null($courseid)) {
     // Site level reports
-    // admin_externalpage_setup('pooey', '', null, '', array('pagelayout' => 'report'));
-    // $charts = report_pooey_manager::get_site_charts();
+    //admin_externalpage_setup('pooey', '', null, '', array('pagelayout' => 'report'));
+    //$charts = report_pooey_manager::get_site_charts();
+    $course = $DB->get_record('course', array('id' => $courseid), '*', MUST_EXIST);
+    $context = context_course::instance($course->id);
+
+    require_login($course, false);
+    require_capability('report/pooey:view', $context);
+
+    $PAGE->set_url(new moodle_url('/report/pooey/index.php', array('course' => $course->id)));
+    $PAGE->set_pagelayout('report');
+    $PAGE->set_title($course->shortname.' - '.get_string('pluginname', 'report_pooey'));
+    $PAGE->set_heading($course->fullname.' - '.get_string('pluginname', 'report_pooey'));
+    $PAGE->set_heading($course->fullname.' - Testing');
+
+    $charts = report_pooey_manager::get_course_charts($course);
 
 } else {
     // Course level report

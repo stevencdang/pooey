@@ -36,10 +36,7 @@ class report_pooey_manager {
     public static function get_site_charts() {
 
         $list = array(
-            new report_pooey_chart_logins(),
-            new report_pooey_chart_countries(),
-            new report_pooey_chart_langs(),
-            new report_pooey_chart_courses(),
+            new report_pooey_chart_assignment(),
         );
 
         return $list;
@@ -54,8 +51,15 @@ class report_pooey_manager {
     public static function get_course_charts(stdClass $course) {
 
         $list = array(
-            new report_pooey_chart_enrolments($course),
+            new report_pooey_chart_assignment(),
+            //new report_pooey_chart_enrolments($course),
         );
+        // $list = array(
+            // new report_pooey_chart_logins(),
+            // new report_pooey_chart_countries(),
+            // new report_pooey_chart_langs(),
+            // new report_pooey_chart_courses(),
+        // );
 
         return $list;
     }
