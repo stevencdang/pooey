@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'Overview statistics';
+$string['pluginname'] = 'Assignment Acitivity';
 $string['chart-countries'] = 'User countries';
 $string['chart-countries-info'] = 'Number of different countries: {$a}';
 $string['chart-courses'] = 'Courses';
@@ -41,4 +41,4 @@ $string['chart-langs'] = 'User preferred languages';
 $string['chart-langs-info'] = 'Number of different languages: {$a}';
 $string['chart-logins'] = 'Users logging in';
 $string['chart-logins-perday'] = 'Per day';
-$string['pooey:view'] = 'View overview statistics';
+$string['pooey:view'] = 'View Assignment Acitivity';

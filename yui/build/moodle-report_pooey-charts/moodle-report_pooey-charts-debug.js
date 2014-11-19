@@ -1,8 +1,8 @@
-YUI.add('moodle-report_overviewstats-charts', function (Y, NAME) {
+YUI.add('moodle-report_pooey-charts', function (Y, NAME) {
 
-M.report_overviewstats = M.report_overviewstats || {};
-M.report_overviewstats.charts = M.report_overviewstats.charts || {};
-M.report_overviewstats.charts.countries = {
+M.report_pooey = M.report_pooey || {};
+M.report_pooey.charts = M.report_pooey.charts || {};
+M.report_pooey.charts.countries = {
 
     /**
      * @method init
@@ -27,9 +27,9 @@ M.report_overviewstats.charts.countries = {
         chart.render("#chart_countries");
     }
 };
-M.report_overviewstats = M.report_overviewstats || {};
-M.report_overviewstats.charts = M.report_overviewstats.charts || {};
-M.report_overviewstats.charts.courses = {
+M.report_pooey = M.report_pooey || {};
+M.report_pooey.charts = M.report_pooey.charts || {};
+M.report_pooey.charts.courses = {
 
     /**
      * @method init
@@ -55,9 +55,9 @@ M.report_overviewstats.charts.courses = {
         sizes.render("#chart_courses_sizes");
     }
 };
-M.report_overviewstats = M.report_overviewstats || {};
-M.report_overviewstats.charts = M.report_overviewstats.charts || {};
-M.report_overviewstats.charts.enrolments = {
+M.report_pooey = M.report_pooey || {};
+M.report_pooey.charts = M.report_pooey.charts || {};
+M.report_pooey.charts.enrolments = {
 
     /**
      * @method init
@@ -121,9 +121,9 @@ M.report_overviewstats.charts.enrolments = {
         lastyear.render("#chart_enrolments_lastyear");
     }
 };
-M.report_overviewstats = M.report_overviewstats || {};
-M.report_overviewstats.charts = M.report_overviewstats.charts || {};
-M.report_overviewstats.charts.langs = {
+M.report_pooey = M.report_pooey || {};
+M.report_pooey.charts = M.report_pooey.charts || {};
+M.report_pooey.charts.langs = {
 
     /**
      * @method init
@@ -148,9 +148,9 @@ M.report_overviewstats.charts.langs = {
         chart.render("#chart_langs");
     }
 };
-M.report_overviewstats = M.report_overviewstats || {};
-M.report_overviewstats.charts = M.report_overviewstats.charts || {};
-M.report_overviewstats.charts.logins = {
+M.report_pooey = M.report_pooey || {};
+M.report_pooey.charts = M.report_pooey.charts || {};
+M.report_pooey.charts.logins = {
 
     /**
      * @method init
