@@ -27,6 +27,7 @@ $PAGE->requires->js('/report/assignmentactivity/d3.min.js');
 
 $id          = optional_param('id', 0, PARAM_INT);// Course ID.
 $modid       = optional_param('modid', 0, PARAM_ALPHANUMEXT); // Module id or 'site_errors'.
+$assignment  = optional_param('assignment', 0, PARAM_ALPHANUMEXT); //Assignment id
 
 $params = array();
 if ($id !== 0) {
@@ -34,6 +35,9 @@ if ($id !== 0) {
 }
 if ($modid !== 0) {
     $params['modid'] = $modid;
+}
+if ($assignment !== 0) {
+    $params['assignment'] = $assignment;
 }
 
 $url = new moodle_url("/report/assignmentactivity/index.php", $params);
@@ -63,6 +67,8 @@ $content = $PAGE->get_renderer('report_assignmentactivity');
 echo $OUTPUT->header();
 echo $content->form();
 echo $content->test();
+
+$PAGE->requires->js_init_call('M.report_assignmentactivity.init');
 echo $OUTPUT->footer();
 
 

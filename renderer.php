@@ -41,7 +41,7 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
 	$out .= '<div style="background:#FFFFCC;min-height:50px;width:100%;padding:10px;">';
 	$out .= '<h3 style="display:inline-block;margin-right:50px;">Select Assignment:</h3>';
 	$out .= '<select name="assignment">';
-	$out .= '<option value="test">test</option>';
+	$out .= '<option value="test" selected>test</option>';
 	$out .= '</select>';
 	$out .= '</div>';
 	$out .= '<input type="submit" value="'.get_string('view').'" />';
