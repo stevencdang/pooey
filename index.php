@@ -43,8 +43,6 @@ $PAGE->set_pagelayout('report');
 $PAGE->set_title(get_string('pluginname', 'report_assignmentactivity').$displaycoursename);
 $PAGE->set_heading(get_string('pluginname', 'report_assignmentactivity').$displaycoursename);
 
-echo $OUTPUT->header();
-
 // Get course details.
 $course = null;
 if ($id) {
@@ -60,9 +58,11 @@ if ($id) {
 
 // require_capability('report/assignmentactivity:view', $context);
 
-echo '<form action="index.php" method="post">'."\n";
-echo "<div><h1>Testing</h1></div>";
-echo '</form>';
+$content = $PAGE->get_renderer('report_assignmentactivity');
 
+echo $OUTPUT->header();
+echo $content->form();
+echo $content->test();
 echo $OUTPUT->footer();
+
 
