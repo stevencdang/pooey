@@ -35,13 +35,15 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
      * @param 
      * @return string
      */
-    public function form() {
-	$out .= '<form action="index.php" method="post">'."\n";
+    public function form(array $assignments) {
+	$out = '<form id="asgnmnt-form" action="index.php" method="get">'."\n";
 	$out .= "<div><h1>Assigment Activity Form</h1></div>";
-	$out .= '<div style="background:#FFFFCC;min-height:50px;width:100%;padding:10px;">';
+	$out .= '<div style="background:#FFFFCC;min-height:50px;width:100%;margin-bottom:15px;padding:10px;">';
 	$out .= '<h3 style="display:inline-block;margin-right:50px;">Select Assignment:</h3>';
 	$out .= '<select name="assignment">';
-	$out .= '<option value="test" selected>test</option>';
+	foreach ($assignments as $assignment) {
+		$out .= '<option value="'.$assignment.'">'.$assignment.'</option>';
+	}
 	$out .= '</select>';
 	$out .= '</div>';
 	$out .= '<input type="submit" value="'.get_string('view').'" />';
@@ -55,9 +57,9 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
      * @param 
      * @return string
      */
-    public function test() {
-	$out .= "<div><h1>Testing</h1></div>";
-	$out .= '<h2>Test content</h2>';
+    public function chart() {
+	$out = '<div><h1 class="chart">Student Assignments Chart</h1></div>';
+	$out .= '<div id="asgn-chart" style="background:#eee;width:70%;height:500px;"></div>';
 	return $out;	
     }
 
