@@ -73,6 +73,7 @@ echo $OUTPUT->header();
 
 //Get list of assignments
 ////////////// Fake Assignment INfo ////////////////////////
+
 $allasgn = array();
 if (!$allasgn = $DB->get_records('assign', array('course'=>$id))) {
 	$allasgn = array(
@@ -81,6 +82,8 @@ if (!$allasgn = $DB->get_records('assign', array('course'=>$id))) {
 		array("id"=>3, "name"=>"Test assignment3"),
 	);
 }
+
+
 //Render Form
 echo $content->form($allasgn, $id);
 
@@ -97,15 +100,31 @@ if ($assignment !== 0) {
 		"WHERE mdl_user.id = mdl_assign_submission.userid AND assignment = ?";
 	$qParams = array($assignment);
 	$subTimes = $DB->get_records_sql($query, $qParams);
+	$assignData = array(
+		(object) array('username' => 'erik', 'time_viewed' => 1416674429, 'time_submitted' => 1416774429, 'grade' => 90),
+		(object) array('username' => 'david', 'time_viewed' => 1416675429, 'time_submitted' => 1416799429, 'grade' => 87),
+		(object) array('username' => 'cassie', 'time_viewed' => 1416675429, 'time_submitted' => 1416744429, 'grade' => 87),
+		(object) array('username' => 'vince', 'time_viewed' => 1416675429, 'time_submitted' => 1416758429, 'grade' => 87)
+	);
 }
 
 ////////////////////// Insert the assignments chart ///////////////////
 
+function debug_to_console($data) {
+    if(is_array($data) || is_object($data))
+    {
+        echo("<script>console.log('PHP: ".json_encode($data)."');</script>");
+    } else {
+        echo("<script>console.log('PHP: ".$data."');</script>");
+    }
+}
+
 if (is_null($subTimes)) {
 	echo "<h1>Not building chart</h1>";
 } else {
-	//echo "<h1>Building chart</h1>";
-	echo $content->chart($createTime, $subTimes, $deadline);
+	debug_to_console($assignData);
+	debug_to_console(array($createTime, $subTimes, $deadline));
+	echo $content->chart($assignData, $createTime, $subTimes, $deadline);
 }
 
 
