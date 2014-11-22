@@ -34,7 +34,7 @@ defined('MOODLE_INTERNAL') || die;
  */
 function report_assignmentactivity_extend_navigation_course($navigation, $course, $context) {
     if (has_capability('report/assignmentactivity:view', $context)) {
-        $url = new moodle_url('/report/assignmentactivity/index.php', array('id'=>$course->id));
+	$url = new moodle_url('/report/assignmentactivity/index.php', array('id'=>$course->id));
         $navigation->add(get_string('pluginname', 'report_assignmentactivity'), $url, navigation_node::TYPE_SETTING, null, null, new pix_icon('i/report', ''));
     }
 }

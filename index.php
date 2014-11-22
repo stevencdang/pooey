@@ -22,6 +22,8 @@
  */
 
 require('../../config.php');
+require_once($CFG->dirroot.'/course/lib.php');
+require_once($CFG->dirroot.'/report/assignmentactivity/locallib.php');
 
 $PAGE->requires->jquery();
 $PAGE->requires->js('/report/assignmentactivity/d3.min.js');
@@ -47,8 +49,8 @@ if ($assignment !== 0) {
 $course = NULL;
 if ($id) {
     $course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
-    // require_login($course);
-    require_login();
+    require_login($course);
+    // require_login();
     $context = context_course::instance($course->id);
     $PAGE->set_context($context);
 } else {
@@ -57,7 +59,7 @@ if ($id) {
     $PAGE->set_context($context);
 }
 
-// require_capability('report/assignmentactivity:view', $context);
+require_capability('report/assignmentactivity:view', $context);
 
 $url = new moodle_url("/report/assignmentactivity/index.php", $params);
 
@@ -71,16 +73,28 @@ echo $OUTPUT->header();
 
 //Get list of assignments
 ////////////// Fake Assignment INfo ////////////////////////
-$allasgn = array(
-	"assignment1",
-	"assignment2",
-	"assignment3"
-);
-echo $content->form($allasgn);
 
-$assignData = 0;
+$allasgn = array();
+if (!$allasgn = $DB->get_records('assign', array('course'=>$id))) {
+	$allasgn = array(
+		array("id"=>1, "name"=>"Test assignment1"),
+		array("id"=>2, "name"=>"Test assignment2"),
+		array("id"=>3, "name"=>"Test assignment3"),
+	);
+}
+
+
+//Render Form
+echo $content->form($allasgn, $id);
+
+//Get chart data if assignment was selected
+$subTimes = null; 
+$deadline = null; 
+$createTime = null;
 if ($assignment !== 0) {
-	//echo "<h1>Got an assignment</h1>";
+	$createTime = $DB->get_record('assign', array('id'=>$assignment))->allowsubmissionsfromdate;
+	$deadline = $DB->get_record('assign', array('id'=>$assignment))->duedate;
+	$subTimes = $DB->get_records('assign_submission', array('assignment'=>$assignment));
 	$assignData = array(
 		(object) array('username' => 'erik', 'time_viewed' => 1416674429, 'time_submitted' => 1416774429),
 		(object) array('username' => 'david', 'time_viewed' => 1416675429, 'time_submitted' => 1416799429)
@@ -98,11 +112,12 @@ function debug_to_console($data) {
     }
 }
 
-if ($assignData === 0) {
+if (is_null($subTimes)) {
 	echo "<h1>Not building chart</h1>";
 } else {
 	debug_to_console($assignData);
-	echo $content->chart($assignData);
+	debug_to_console(array($createTime, $subTimes, $deadline));
+	echo $content->chart($assignData, $createTime, $subTimes, $deadline);
 }
 
 

@@ -35,14 +35,15 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
      * @param 
      * @return string
      */
-    public function form(array $assignments) {
+    public function form($assignments, $id) {
 	$out = '<form id="asgnmnt-form" action="index.php" method="get">'."\n";
 	$out .= "<div><h1>Assigment Activity Form</h1></div>";
 	$out .= '<div style="background:#FFFFCC;min-height:50px;width:100%;margin-bottom:15px;padding:10px;">';
 	$out .= '<h3 style="display:inline-block;margin-right:50px;">Select Assignment:</h3>';
+	$out .= '<input name="id" value="'.$id.'" hidden>';
 	$out .= '<select name="assignment">';
 	foreach ($assignments as $assignment) {
-		$out .= '<option value="'.$assignment.'">'.$assignment.'</option>';
+		$out .= '<option value="'.$assignment->id.'">'.$assignment->name.'</option>';
 	}
 	$out .= '</select>';
 	$out .= '</div>';
@@ -60,12 +61,12 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
      * @param 
      * @return string
      */
-    public function chart(array $assignData) {
+    public function chart($assignData, $createTime, $studentData, $deadline) {
 
 		$out = '<script> var assignData = ';
 		$out .= json_encode($assignData);
 		$out .= '; </script>';
-
+	
 		$out .= '<div><h1 class="chart-title">Student Assignments Chart</h1>';
 
 		$out .= '</div>';
@@ -75,6 +76,10 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
 
 		.axis text {
 		  font: 10px sans-serif;
+		}
+
+		.dot {
+		  stroke: #000;
 		}
 
 		.axis path,
@@ -101,31 +106,6 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
 		</style>';
 
 		$out .= '<svg class="chart" width="500"></svg>';
-		//   <g transform="translate(0,0)">
-		//     <rect width="40" height="19"></rect>
-		//     <text x="37" y="9.5" dy=".35em">4</text>
-		//   </g>
-		//   <g transform="translate(0,20)">
-		//     <rect width="80" height="19"></rect>
-		//     <text x="77" y="9.5" dy=".35em">8</text>
-		//   </g>
-		//   <g transform="translate(0,40)">
-		//     <rect width="150" height="19"></rect>
-		//     <text x="147" y="9.5" dy=".35em">15</text>
-		//   </g>
-		//   <g transform="translate(0,60)">
-		//     <rect width="160" height="19"></rect>
-		//     <text x="157" y="9.5" dy=".35em">16</text>
-		//   </g>
-		//   <g transform="translate(0,80)">
-		//     <rect width="230" height="19"></rect>
-		//     <text x="227" y="9.5" dy=".35em">23</text>
-		//   </g>
-		//   <g transform="translate(0,100)">
-		//     <rect width="420" height="19"></rect>
-		//     <text x="417" y="9.5" dy=".35em">42</text>
-		//   </g>
-		// </svg>';
 
 		$out .= '</div>';
 		return $out;	
