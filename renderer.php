@@ -63,9 +63,12 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
      */
     public function chart($assignData, $createTime, $studentData, $deadline) {
 
-		$out = '<script> var assignData = ';
-		$out .= json_encode($assignData);
-		$out .= '; </script>';
+		$out = '<script>';
+		$out .= 'var assignData = ' . json_encode($assignData) . ';';
+		$out .= 'var createTime = ' . json_encode($createTime) . ';';
+		$out .= 'var studentData = ' . json_encode($studentData) . ';';
+		$out .= 'var deadline = ' . json_encode($deadline) . ';';
+		$out .= '</script>';
 	
 		$out .= '<div><h1 class="chart-title">Student Assignments Chart</h1>';
 

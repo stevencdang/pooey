@@ -24,8 +24,6 @@ window.onload = function() {
 	var width = 500 - margin.left - margin.right,
 	    barHeight = 20,
 	    height = (barHeight * timeLengths.length);
-
-	var minTime = 0;
 	
 	var timeOffsets = [];
 	var timeFinals = [];
@@ -36,9 +34,10 @@ window.onload = function() {
 		timeFinals.push(timeLengths[i] + offset);
 	}
 	
-	var maxTime = d3.max(timeFinals);
+	var minTime = createTime;
+	var maxTime = deadline;
 	var timePerPx = (maxTime - minTime)/width;
-	console.log(timeOffsets, timePerPx);
+	console.log(submittedTimes, timePerPx);
 
 	var x = d3.scale.linear()
 	    .domain([minTime, maxTime])
@@ -49,10 +48,10 @@ window.onload = function() {
 	    .attr("height", height + margin.top + margin.bottom);
 
 	var bar = chart.selectAll("g")
-	    .data(timeLengths)
+	    .data(submittedTimes)
 	  .enter().append("g")
 	    .attr("transform", function(d, i) { 
-	    	return "translate(" + (margin.left + timeOffsets[i]/timePerPx) + "," + (i * barHeight + margin.top) + ")"; 
+	    	return "translate(" + (margin.left) + "," + (i * barHeight + margin.top) + ")"; 
 	    });
 
 	bar.append("rect")
@@ -71,8 +70,10 @@ window.onload = function() {
 
 	var xAxis = d3.svg.axis()
 	    .scale(x)
-	    .orient("bottom");
+	    .orient("bottom")
+	    .ticks(5);
 
+	// x-axis label
 	chart.append("g")
 	    .attr("class", "x axis")
 	    .attr("transform", "translate(" + margin.left + "," + (margin.top + height) + ")")

@@ -92,12 +92,14 @@ $subTimes = null;
 $deadline = null; 
 $createTime = null;
 if ($assignment !== 0) {
-	$createTime = $DB->get_record('assign', array('id'=>$assignment))->allowsubmissionsfromdate;
-	$deadline = $DB->get_record('assign', array('id'=>$assignment))->duedate;
+	//$createTime = $DB->get_record('assign', array('id'=>$assignment))->allowsubmissionsfromdate;
+	$createTime = 1416674429;
+	//$deadline = $DB->get_record('assign', array('id'=>$assignment))->duedate;
+	$deadline = 1416802429;
 	$subTimes = $DB->get_records('assign_submission', array('assignment'=>$assignment));
 	$assignData = array(
-		(object) array('username' => 'erik', 'time_viewed' => 1416674429, 'time_submitted' => 1416774429),
-		(object) array('username' => 'david', 'time_viewed' => 1416675429, 'time_submitted' => 1416799429)
+		(object) array('username' => 'erik', 'time_viewed' => 1416674429, 'time_submitted' => 1416774429, 'grade' => 90),
+		(object) array('username' => 'david', 'time_viewed' => 1416675429, 'time_submitted' => 1416799429, 'grade' => 87)
 	);
 }
 
