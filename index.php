@@ -91,7 +91,12 @@ $createTime = null;
 if ($assignment !== 0) {
 	$createTime = $DB->get_record('assign', array('id'=>$assignment))->allowsubmissionsfromdate;
 	$deadline = $DB->get_record('assign', array('id'=>$assignment))->duedate;
-	$subTimes = $DB->get_records('assign_submission', array('assignment'=>$assignment));
+	$query = "SELECT moodle.mdl_assign_submission.id, firstname, lastname, ".
+		"moodle.mdl_assign_submission.timemodified ".
+		"FROM mdl_assign_submission, mdl_user ".
+		"WHERE mdl_user.id = mdl_assign_submission.userid AND assignment = ?";
+	$qParams = array($assignment);
+	$subTimes = $DB->get_records_sql($query, $qParams);
 }
 
 ////////////////////// Insert the assignments chart ///////////////////

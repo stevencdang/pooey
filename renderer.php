@@ -63,6 +63,11 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
      */
     public function chart($createTime, $studentData, $deadline) {
 	$out = '<div><h1 class="chart-title">Student Assignments Chart</h1>';
+	// Test code to view all data given in studentData
+	foreach ($studentData as $data) {
+		$out .= '<h2>'.$data->id.' '.$data->firstname.' '.$data->lastname.': '.
+			$data->timemodified.'</h2>';
+	}
 	$out .= '</div>';
 	$out .= '<div id="asgn-chart" style="background:#eee;width:70%;height:500px;">';
 	
