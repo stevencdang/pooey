@@ -35,11 +35,12 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
      * @param 
      * @return string
      */
-    public function form(array $assignments) {
+    public function form(array $assignments, $id) {
 	$out = '<form id="asgnmnt-form" action="index.php" method="get">'."\n";
 	$out .= "<div><h1>Assigment Activity Form</h1></div>";
 	$out .= '<div style="background:#FFFFCC;min-height:50px;width:100%;margin-bottom:15px;padding:10px;">';
 	$out .= '<h3 style="display:inline-block;margin-right:50px;">Select Assignment:</h3>';
+	$out .= '<input name="id" value="'.$id.'" hidden>';
 	$out .= '<select name="assignment">';
 	foreach ($assignments as $assignment) {
 		$out .= '<option value="'.$assignment.'">'.$assignment.'</option>';

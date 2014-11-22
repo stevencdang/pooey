@@ -22,6 +22,8 @@
  */
 
 require('../../config.php');
+require_once($CFG->dirroot.'/course/lib.php');
+require_once($CFG->dirroot.'/report/assignmentactivity/locallib.php');
 
 $PAGE->requires->jquery();
 $PAGE->requires->js('/report/assignmentactivity/d3.min.js');
@@ -47,8 +49,8 @@ if ($assignment !== 0) {
 $course = NULL;
 if ($id) {
     $course = $DB->get_record('course', array('id' => $id), '*', MUST_EXIST);
-    // require_login($course);
-    require_login();
+    require_login($course);
+    // require_login();
     $context = context_course::instance($course->id);
     $PAGE->set_context($context);
 } else {
@@ -57,7 +59,7 @@ if ($id) {
     $PAGE->set_context($context);
 }
 
-// require_capability('report/assignmentactivity:view', $context);
+require_capability('report/assignmentactivity:view', $context);
 
 $url = new moodle_url("/report/assignmentactivity/index.php", $params);
 
@@ -76,7 +78,7 @@ $allasgn = array(
 	"assignment2",
 	"assignment3"
 );
-echo $content->form($allasgn);
+echo $content->form($allasgn, $id);
 $students = 0;
 if ($assignment !== 0) {
 	//echo "<h1>Got an assignment</h1>";
