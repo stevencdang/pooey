@@ -32,13 +32,27 @@ window.onload = function() {
 	//     .text(function(d) { return d; });
 
 
+
+
 	var data = [4, 8, 15, 16, 23, 42];
 
 	var width = 420,
 	    barHeight = 20;
 
 	var minTime = 0;
-	var maxTime = d3.max(timeLengths);
+	
+	var timeOffsets = [];
+	var timeFinals = [];
+	var firstSubTime = d3.min(submittedTimes);
+	for (var i = 0; i < assignData.length; i++) {
+		var offset = submittedTimes[i] - firstSubTime;
+		timeOffsets.push(offset);
+		timeFinals.push(timeLengths[i] + offset);
+	}
+	
+	var maxTime = d3.max(timeFinals);
+	var timePerPx = (maxTime - minTime)/width;
+	console.log(timeOffsets, timePerPx);
 
 	var x = d3.scale.linear()
 	    .domain([minTime, maxTime])
@@ -51,7 +65,9 @@ window.onload = function() {
 	var bar = chart.selectAll("g")
 	    .data(timeLengths)
 	  .enter().append("g")
-	    .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
+	    .attr("transform", function(d, i) { 
+	    	return "translate(" + (timeOffsets[i]/timePerPx) + "," + i * barHeight + ")"; 
+	    });
 
 	bar.append("rect")
 	    .attr("width", x)
@@ -59,13 +75,13 @@ window.onload = function() {
 	    .style("fill", "steelblue");
 
 	bar.append("text")
-	    .attr("x", function(d) { return x(d) - 3; })
+	    .attr("x", function(d) { console.log(x(d)); return x(d) - 3; })
 	    .attr("y", barHeight / 2)
 	    .attr("dy", ".35em")
 	    .style("text-anchor", "end")
 	    .style("font", "10px sans-serif")
 	    .style("fill", "white")
-	    .text(function(d) { return d; });	    
+	    .text(function(d, i) { return users[i]; });	    
 }
 
 
