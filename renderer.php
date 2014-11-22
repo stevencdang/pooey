@@ -50,7 +50,6 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
 		$out .= '<input type="submit" value="'.get_string('view').'" />';
 		$out .= '</form>';
 
-
 		$out .= '<script src="module.js"></script>';
 		return $out;	
     }
@@ -61,10 +60,9 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
      * @param 
      * @return string
      */
-    public function chart($assignData, $createTime, $studentData, $deadline) {
+    public function chart($createTime, $deadline, $studentData) {
 
 		$out = '<script>';
-		$out .= 'var assignData = ' . json_encode($assignData) . ';';
 		$out .= 'var createTime = ' . json_encode($createTime) . ';';
 		$out .= 'var studentData = ' . json_encode($studentData) . ';';
 		$out .= 'var deadline = ' . json_encode($deadline) . ';';

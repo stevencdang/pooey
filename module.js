@@ -3,16 +3,12 @@ M.report_assignmentactivity = {};
 
 window.onload = function() {
 
-	console.log("onload");
-
 	var users = [];
 	var submittedTimes = [];
 	for (var key in studentData) {
 		var subRow = studentData[key];
 		submittedTimes.push(new Date(parseInt(subRow["timemodified"])*1000));
 		users.push(subRow["nicename"]);
-		console.log("subRow");
-		console.log(subRow);
 	}
 
 	var margin = {top: 15, right: 20, bottom: 30, left: 20};
@@ -22,9 +18,6 @@ window.onload = function() {
 	
 	var minTime = new Date(createTime*1000);
 	var maxTime = new Date(deadline*1000);
-	console.log(minTime, maxTime);
-	var timePerPx = (maxTime - minTime)/width;
-	console.log(submittedTimes, timePerPx);
 
 	var x = d3.time.scale()
 	    .domain([minTime, maxTime])
@@ -47,7 +40,7 @@ window.onload = function() {
 	    .style("fill", "steelblue");
 
 	bar.append("text")
-	    .attr("x", function(d) { console.log(x(d)); return x(d) - 3; })
+	    .attr("x", function(d) { return x(d) - 3; })
 	    .attr("y", barHeight / 2)
 	    .attr("dy", ".35em")
 	    .style("text-anchor", "end")
@@ -81,5 +74,4 @@ M.report_assignmentactivity.init = function(Y) {
 	});
 };
 
-//M.report_assignmentactivity.graphStudents = function(
 

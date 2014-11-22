@@ -77,14 +77,12 @@ echo $OUTPUT->header();
 $allasgn = array();
 if (!$allasgn = $DB->get_records('assign', array('course'=>$id))) {
 	$allasgn = array(
-		array("id"=>1, "name"=>"Assignment 1 - Binary Fun"),
-		array("id"=>2, "name"=>"Assignment 2 - Adding it Up")
+		(object) array("id"=>1, "name"=>"Assignment 1 - Binary Fun"),
+		(object) array("id"=>2, "name"=>"Assignment 2 - Adding it Up")
 	);
 }
 
 //Render Form
-debug_to_console("allasgn");
-debug_to_console($allasgn);
 echo $content->form($allasgn, $id);
 
 //Get chart data if assignment was selected
@@ -93,36 +91,13 @@ $deadline = null;
 $createTime = null;
 if ($assignment !== 0) {
 	$createTime = $DB->get_record('assign', array('id'=>$assignment))->allowsubmissionsfromdate;
-
-	//$createTime = 1416674429;
 	$deadline = $DB->get_record('assign', array('id'=>$assignment))->duedate;
-	//$deadline = 1416802429;
 	$subTimes = $DB->get_records('assign_submission', array('assignment'=>$assignment));
-	debug_to_console("subTimes");
-	debug_to_console($subTimes);
 
 	foreach ($subTimes as $row) {
-		debug_to_console("roww");
 		$userobj = $DB->get_record('user', array('id'=>$row->userid));
-		debug_to_console($userobj);
 		$row->nicename = $userobj->firstname . " " . $userobj->lastname;
-		debug_to_console($row);
 	}
-
-	// $deadline = $DB->get_record('assign', array('id'=>$assignment))->duedate;
-	// $query = "SELECT moodle.mdl_assign_submission.id, firstname, lastname, ".
-	// 	"moodle.mdl_assign_submission.timemodified ".
-	// 	"FROM mdl_assign_submission, mdl_user ".
-	// 	"WHERE mdl_user.id = mdl_assign_submission.userid AND assignment = ?";
-	// $qParams = array($assignment);
-	// $subTimes = $DB->get_records_sql($query, $qParams);
-
-	$assignData = array(
-		(object) array('username' => 'erik', 'time_viewed' => 1416674429, 'time_submitted' => 1416774429, 'grade' => 90),
-		(object) array('username' => 'david', 'time_viewed' => 1416675429, 'time_submitted' => 1416799429, 'grade' => 87),
-		(object) array('username' => 'cassie', 'time_viewed' => 1416675429, 'time_submitted' => 1416744429, 'grade' => 87),
-		(object) array('username' => 'vince', 'time_viewed' => 1416675429, 'time_submitted' => 1416758429, 'grade' => 87)
-	);
 }
 
 ////////////////////// Insert the assignments chart ///////////////////
@@ -139,9 +114,7 @@ function debug_to_console($data) {
 if (is_null($subTimes)) {
 	echo "<h1>Not building chart</h1>";
 } else {
-	debug_to_console($assignData);
-	debug_to_console(array($createTime, $subTimes, $deadline));
-	echo $content->chart($assignData, $createTime, $subTimes, $deadline);
+	echo $content->chart($createTime, $deadline, $subTimes);
 }
 
 
