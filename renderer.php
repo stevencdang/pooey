@@ -36,23 +36,23 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
      * @return string
      */
     public function form($assignments, $id) {
-	$out = '<form id="asgnmnt-form" action="index.php" method="get">'."\n";
-	$out .= "<div><h1>Assigment Activity Form</h1></div>";
-	$out .= '<div style="background:#FFFFCC;min-height:50px;width:100%;margin-bottom:15px;padding:10px;">';
-	$out .= '<h3 style="display:inline-block;margin-right:50px;">Select Assignment:</h3>';
-	$out .= '<input name="id" value="'.$id.'" hidden>';
-	$out .= '<select name="assignment">';
-	foreach ($assignments as $assignment) {
-		$out .= '<option value="'.$assignment->id.'">'.$assignment->name.'</option>';
-	}
-	$out .= '</select>';
-	$out .= '</div>';
-	$out .= '<input type="submit" value="'.get_string('view').'" />';
-	$out .= '</form>';
+		$out = '<form id="asgnmnt-form" action="index.php" method="get">'."\n";
+		$out .= "<div><h1>Assigment Activity Form</h1></div>";
+		$out .= '<div style="background:#FFFFCC;min-height:50px;width:100%;margin-bottom:15px;padding:10px;">';
+		$out .= '<h3 style="display:inline-block;margin-right:50px;">Select Assignment:</h3>';
+		$out .= '<input name="id" value="'.$id.'" hidden>';
+		$out .= '<select name="assignment">';
+		foreach ($assignments as $assignment) {
+			$out .= '<option value="'.($assignment->id).'">'.($assignment->name).'</option>';
+		}
+		$out .= '</select>';
+		$out .= '</div>';
+		$out .= '<input type="submit" value="'.get_string('view').'" />';
+		$out .= '</form>';
 
 
-	$out .= '<script src="module.js"></script>';
-	return $out;	
+		$out .= '<script src="module.js"></script>';
+		return $out;	
     }
 
     /**

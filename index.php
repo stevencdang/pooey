@@ -77,14 +77,14 @@ echo $OUTPUT->header();
 $allasgn = array();
 if (!$allasgn = $DB->get_records('assign', array('course'=>$id))) {
 	$allasgn = array(
-		array("id"=>1, "name"=>"Test assignment1"),
-		array("id"=>2, "name"=>"Test assignment2"),
-		array("id"=>3, "name"=>"Test assignment3"),
+		array("id"=>1, "name"=>"Assignment 1 - Binary Fun"),
+		array("id"=>2, "name"=>"Assignment 2 - Adding it Up")
 	);
 }
 
-
 //Render Form
+debug_to_console("allasgn");
+debug_to_console($allasgn);
 echo $content->form($allasgn, $id);
 
 //Get chart data if assignment was selected
@@ -92,11 +92,13 @@ $subTimes = null;
 $deadline = null; 
 $createTime = null;
 if ($assignment !== 0) {
-	//$createTime = $DB->get_record('assign', array('id'=>$assignment))->allowsubmissionsfromdate;
-	$createTime = 1416674429;
-	//$deadline = $DB->get_record('assign', array('id'=>$assignment))->duedate;
-	$deadline = 1416802429;
+	$createTime = $DB->get_record('assign', array('id'=>$assignment))->allowsubmissionsfromdate;
+	//$createTime = 1416674429;
+	$deadline = $DB->get_record('assign', array('id'=>$assignment))->duedate;
+	//$deadline = 1416802429;
 	$subTimes = $DB->get_records('assign_submission', array('assignment'=>$assignment));
+	debug_to_console("subTimes");
+	debug_to_console($subTimes);
 	$assignData = array(
 		(object) array('username' => 'erik', 'time_viewed' => 1416674429, 'time_submitted' => 1416774429, 'grade' => 90),
 		(object) array('username' => 'david', 'time_viewed' => 1416675429, 'time_submitted' => 1416799429, 'grade' => 87),

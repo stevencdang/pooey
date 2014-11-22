@@ -6,33 +6,18 @@ window.onload = function() {
 	console.log("onload");
 
 	var users = [];
-	var viewedTimes = [];
 	var submittedTimes = [];
-	var timeLengths = [];
-	var row;
-	for (var i = 0; i < assignData.length; i++) {
-		row = assignData[i];
-		users.push(row['username']);
-		viewedTimes.push(row['time_viewed']);
-		submittedTimes.push(new Date(row['time_submitted']*1000));
-		timeLengths.push(row['time_submitted'] - row['time_viewed']); 
-	};
-
-	var data = [4, 8, 15, 16, 23, 42];
+	for (var key in studentData) {
+		var subRow = studentData[key];
+		submittedTimes.push(new Date(parseInt(subRow["timemodified"])*1000));
+		console.log("subRow");
+		console.log(subRow);
+	}
 
 	var margin = {top: 15, right: 20, bottom: 30, left: 20};
 	var width = 500 - margin.left - margin.right,
 	    barHeight = 20,
-	    height = (barHeight * timeLengths.length);
-	
-	var timeOffsets = [];
-	var timeFinals = [];
-	var firstSubTime = d3.min(submittedTimes);
-	for (var i = 0; i < assignData.length; i++) {
-		var offset = submittedTimes[i] - firstSubTime;
-		timeOffsets.push(offset);
-		timeFinals.push(timeLengths[i] + offset);
-	}
+	    height = (barHeight * submittedTimes.length);
 	
 	var minTime = new Date(createTime*1000);
 	var maxTime = new Date(deadline*1000);
@@ -67,7 +52,7 @@ window.onload = function() {
 	    .style("text-anchor", "end")
 	    .style("font", "10px sans-serif")
 	    .style("fill", "white")
-	    .text(function(d, i) { return users[i]; });	    
+	    .text(function(d, i) { return i; });	    
 
 	var xAxis = d3.svg.axis()
 	    .scale(x)
