@@ -77,25 +77,31 @@ $allasgn = array(
 	"assignment3"
 );
 echo $content->form($allasgn);
-$students = 1;
+$assignData = 1;
 if ($assignment !== 0) {
 	//echo "<h1>Got an assignment</h1>";
-	$students = array(
-		"Steven",
-		"Erik",
-		"David",
-		"Cassie",
-		"Timmy",
-		"Ariel",
-	);	
+	$assignData = array(
+		(object) array('username' => 'erik', 'time_viewed' => 1416674429, 'time_submitted' => 1416774429),
+		(object) array('username' => 'david', 'time_viewed' => 1416675429, 'time_submitted' => 1416799429)
+	);
 }
 
 ////////////////////// Insert the assignments chart ///////////////////
 
-if (is_null($students)) {
+function debug_to_console($data) {
+    if(is_array($data) || is_object($data))
+    {
+        echo("<script>console.log('PHP: ".json_encode($data)."');</script>");
+    } else {
+        echo("<script>console.log('PHP: ".$data."');</script>");
+    }
+}
+
+if (is_null($assignData)) {
 	echo "<h1>Not building chart</h1>";
 } else {
-	echo $content->chart();
+	debug_to_console($assignData);
+	echo $content->chart($assignData);
 }
 
 

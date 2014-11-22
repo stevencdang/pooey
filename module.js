@@ -1,42 +1,31 @@
 M.report_assignmentactivity = {};
 
-console.log("onload");
-
 // times are in seconds since epoch, as is stored in the Moodle database
-var assignData = [
-	{'username': 'erik', 'time_viewed': 1416674429, 'time_submitted': 1416774429},
-	{'username': 'david', 'time_viewed': 1416675429, 'time_submitted': 1416799429}
-];
-
-var users = [];
-var viewedTimes = [];
-var submittedTimes = [];
-var timeLengths = [];
-var row;
-for (var i = 0; i < assignData.length; i++) {
-	row = assignData[i];
-	users.push(row['username']);
-	viewedTimes.push(row['time_viewed']);
-	submittedTimes.push(row['time_submitted']);
-	timeLengths.push(row['time_submitted'] - row['time_viewed']); 
-};
+// var assignData = [
+// 	{'username': 'erik', 'time_viewed': 1416674429, 'time_submitted': 1416774429},
+// 	{'username': 'david', 'time_viewed': 1416675429, 'time_submitted': 1416799429}
+// ];
 
 window.onload = function() {
-	// var data = [4, 8, 15, 16, 23, 42];
-	// d3.select("#asgn-chart")
-	//   .selectAll("div")
-	//     .data(data)
-	//   .enter().append("div")
-	//     .style("width", function(d) { return d * 10 + "px"; })
-	//     .style("background-color", "blue")
-	//     .text(function(d) { return d; });
 
+	console.log("onload");
 
-
+	var users = [];
+	var viewedTimes = [];
+	var submittedTimes = [];
+	var timeLengths = [];
+	var row;
+	for (var i = 0; i < assignData.length; i++) {
+		row = assignData[i];
+		users.push(row['username']);
+		viewedTimes.push(row['time_viewed']);
+		submittedTimes.push(row['time_submitted']);
+		timeLengths.push(row['time_submitted'] - row['time_viewed']); 
+	};
 
 	var data = [4, 8, 15, 16, 23, 42];
 
-	var width = 420,
+	var width = 500,
 	    barHeight = 20;
 
 	var minTime = 0;
