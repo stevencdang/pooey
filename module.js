@@ -10,6 +10,7 @@ window.onload = function() {
 	for (var key in studentData) {
 		var subRow = studentData[key];
 		submittedTimes.push(new Date(parseInt(subRow["timemodified"])*1000));
+		users.push(subRow["nicename"]);
 		console.log("subRow");
 		console.log(subRow);
 	}
@@ -52,7 +53,7 @@ window.onload = function() {
 	    .style("text-anchor", "end")
 	    .style("font", "10px sans-serif")
 	    .style("fill", "white")
-	    .text(function(d, i) { return i; });	    
+	    .text(function(d, i) { return users[i]; });	    
 
 	var xAxis = d3.svg.axis()
 	    .scale(x)
