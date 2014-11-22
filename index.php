@@ -73,32 +73,34 @@ echo $OUTPUT->header();
 
 //Get list of assignments
 ////////////// Fake Assignment INfo ////////////////////////
-$allasgn = array(
-	"assignment1",
-	"assignment2",
-	"assignment3"
-);
+$allasgn = array();
+if (!$allasgn = $DB->get_records('assign', array('course'=>$id))) {
+	$allasgn = array(
+		array("id"=>1, "name"=>"Test assignment1"),
+		array("id"=>2, "name"=>"Test assignment2"),
+		array("id"=>3, "name"=>"Test assignment3"),
+	);
+}
+//Render Form
 echo $content->form($allasgn, $id);
-$students = 0;
+
+//Get chart data if assignment was selected
+$subTimes = null; 
+$deadline = null; 
+$createTime = null;
 if ($assignment !== 0) {
-	//echo "<h1>Got an assignment</h1>";
-	$students = array(
-		"Steven",
-		"Erik",
-		"David",
-		"Cassie",
-		"Timmy",
-		"Ariel",
-	);	
+	$createTime = $DB->get_record('assign', array('id'=>$assignment))->allowsubmissionsfromdate;
+	$deadline = $DB->get_record('assign', array('id'=>$assignment))->duedate;
+	$subTimes = $DB->get_records('assign_submission', array('assignment'=>$assignment));
 }
 
 ////////////////////// Insert the assignments chart ///////////////////
 
-if ($students === 0) {
+if (is_null($subTimes)) {
 	echo "<h1>Not building chart</h1>";
 } else {
 	//echo "<h1>Building chart</h1>";
-	echo $content->chart();
+	echo $content->chart($createTime, $subTimes, $deadline);
 }
 
 

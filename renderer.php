@@ -35,7 +35,7 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
      * @param 
      * @return string
      */
-    public function form(array $assignments, $id) {
+    public function form($assignments, $id) {
 	$out = '<form id="asgnmnt-form" action="index.php" method="get">'."\n";
 	$out .= "<div><h1>Assigment Activity Form</h1></div>";
 	$out .= '<div style="background:#FFFFCC;min-height:50px;width:100%;margin-bottom:15px;padding:10px;">';
@@ -43,7 +43,7 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
 	$out .= '<input name="id" value="'.$id.'" hidden>';
 	$out .= '<select name="assignment">';
 	foreach ($assignments as $assignment) {
-		$out .= '<option value="'.$assignment.'">'.$assignment.'</option>';
+		$out .= '<option value="'.$assignment->id.'">'.$assignment->name.'</option>';
 	}
 	$out .= '</select>';
 	$out .= '</div>';
@@ -61,9 +61,8 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
      * @param 
      * @return string
      */
-    public function chart() {
+    public function chart($createTime, $studentData, $deadline) {
 	$out = '<div><h1 class="chart-title">Student Assignments Chart</h1>';
-
 	$out .= '</div>';
 	$out .= '<div id="asgn-chart" style="background:#eee;width:70%;height:500px;">';
 	
