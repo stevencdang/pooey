@@ -77,7 +77,7 @@ $allasgn = array(
 	"assignment3"
 );
 echo $content->form($allasgn);
-$students = 1;
+$students = 0;
 if ($assignment !== 0) {
 	//echo "<h1>Got an assignment</h1>";
 	$students = array(
@@ -92,9 +92,10 @@ if ($assignment !== 0) {
 
 ////////////////////// Insert the assignments chart ///////////////////
 
-if (is_null($students)) {
+if ($students === 0) {
 	echo "<h1>Not building chart</h1>";
 } else {
+	//echo "<h1>Building chart</h1>";
 	echo $content->chart();
 }
 
