@@ -77,7 +77,8 @@ $allasgn = array(
 	"assignment3"
 );
 echo $content->form($allasgn);
-$assignData = 1;
+
+$assignData = 0;
 if ($assignment !== 0) {
 	//echo "<h1>Got an assignment</h1>";
 	$assignData = array(
@@ -97,7 +98,7 @@ function debug_to_console($data) {
     }
 }
 
-if (is_null($assignData)) {
+if ($assignData === 0) {
 	echo "<h1>Not building chart</h1>";
 } else {
 	debug_to_console($assignData);

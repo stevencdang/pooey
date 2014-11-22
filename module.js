@@ -1,10 +1,5 @@
 M.report_assignmentactivity = {};
 
-// times are in seconds since epoch, as is stored in the Moodle database
-// var assignData = [
-// 	{'username': 'erik', 'time_viewed': 1416674429, 'time_submitted': 1416774429},
-// 	{'username': 'david', 'time_viewed': 1416675429, 'time_submitted': 1416799429}
-// ];
 
 window.onload = function() {
 
@@ -25,8 +20,10 @@ window.onload = function() {
 
 	var data = [4, 8, 15, 16, 23, 42];
 
-	var width = 500,
-	    barHeight = 20;
+	var margin = {top: 15, right: 20, bottom: 30, left: 20};
+	var width = 500 - margin.left - margin.right,
+	    barHeight = 20,
+	    height = (barHeight * timeLengths.length);
 
 	var minTime = 0;
 	
@@ -48,14 +45,14 @@ window.onload = function() {
 	    .range([0, width]);
 
 	var chart = d3.select(".chart")
-	    .attr("width", width)
-	    .attr("height", barHeight * timeLengths.length);
+	    .attr("width", width + margin.left + margin.right)
+	    .attr("height", height + margin.top + margin.bottom);
 
 	var bar = chart.selectAll("g")
 	    .data(timeLengths)
 	  .enter().append("g")
 	    .attr("transform", function(d, i) { 
-	    	return "translate(" + (timeOffsets[i]/timePerPx) + "," + i * barHeight + ")"; 
+	    	return "translate(" + (margin.left + timeOffsets[i]/timePerPx) + "," + (i * barHeight + margin.top) + ")"; 
 	    });
 
 	bar.append("rect")
@@ -71,6 +68,18 @@ window.onload = function() {
 	    .style("font", "10px sans-serif")
 	    .style("fill", "white")
 	    .text(function(d, i) { return users[i]; });	    
+
+	var xAxis = d3.svg.axis()
+	    .scale(x)
+	    .orient("bottom");
+
+	chart.append("g")
+	    .attr("class", "x axis")
+	    .attr("transform", "translate(" + margin.left + "," + (margin.top + height) + ")")
+	    .call(xAxis);
+
+	chart.append("g")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 }
 
 

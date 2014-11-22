@@ -73,6 +73,17 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
 		
 		$out .= '<style>
 
+		.axis text {
+		  font: 10px sans-serif;
+		}
+
+		.axis path,
+		.axis line {
+		  fill: none;
+		  stroke: #000;
+		  shape-rendering: crispEdges;
+		}
+
 		.chart rect {
 		  fill: steelblue;
 		}
@@ -81,7 +92,13 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
 		  fill: white;
 		  font: 10px sans-serif;
 		  text-anchor: end;
-		}</style>';
+		}
+
+		.tick text {
+		  fill: black;
+		}
+
+		</style>';
 
 		$out .= '<svg class="chart" width="500"></svg>';
 		//   <g transform="translate(0,0)">
