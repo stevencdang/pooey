@@ -14,7 +14,7 @@ window.onload = function() {
 		row = assignData[i];
 		users.push(row['username']);
 		viewedTimes.push(row['time_viewed']);
-		submittedTimes.push(row['time_submitted']);
+		submittedTimes.push(new Date(row['time_submitted']*1000));
 		timeLengths.push(row['time_submitted'] - row['time_viewed']); 
 	};
 
@@ -34,12 +34,13 @@ window.onload = function() {
 		timeFinals.push(timeLengths[i] + offset);
 	}
 	
-	var minTime = createTime;
-	var maxTime = deadline;
+	var minTime = new Date(createTime*1000);
+	var maxTime = new Date(deadline*1000);
+	console.log(minTime, maxTime);
 	var timePerPx = (maxTime - minTime)/width;
 	console.log(submittedTimes, timePerPx);
 
-	var x = d3.scale.linear()
+	var x = d3.time.scale()
 	    .domain([minTime, maxTime])
 	    .range([0, width]);
 
@@ -71,7 +72,7 @@ window.onload = function() {
 	var xAxis = d3.svg.axis()
 	    .scale(x)
 	    .orient("bottom")
-	    .ticks(5);
+	    .ticks(8);
 
 	// x-axis label
 	chart.append("g")
