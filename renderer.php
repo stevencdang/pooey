@@ -70,7 +70,7 @@ class report_assignmentactivity_renderer extends plugin_renderer_base {
 		$out .= 'var deadline = ' . json_encode($deadline) . ';';
 		$out .= '</script>';
 	
-		$out .= '<div><h1 class="chart-title">Student Assignments Chart</h1>';
+		$out .= '<div><h1 class="chart-title">Student Assignments Turn In Times</h1>';
 
 		$out .= '</div>';
 		$out .= '<div id="asgn-chart" style="background:#eee;width:500px;padding:10px;">';

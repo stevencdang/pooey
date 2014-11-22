@@ -99,7 +99,9 @@ if ($assignment !== 0) {
 	$subTimes = $DB->get_records('assign_submission', array('assignment'=>$assignment));
 	$assignData = array(
 		(object) array('username' => 'erik', 'time_viewed' => 1416674429, 'time_submitted' => 1416774429, 'grade' => 90),
-		(object) array('username' => 'david', 'time_viewed' => 1416675429, 'time_submitted' => 1416799429, 'grade' => 87)
+		(object) array('username' => 'david', 'time_viewed' => 1416675429, 'time_submitted' => 1416799429, 'grade' => 87),
+		(object) array('username' => 'cassie', 'time_viewed' => 1416675429, 'time_submitted' => 1416744429, 'grade' => 87),
+		(object) array('username' => 'vince', 'time_viewed' => 1416675429, 'time_submitted' => 1416758429, 'grade' => 87)
 	);
 }
 
