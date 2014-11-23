@@ -2,14 +2,14 @@ Moodle Plugin Project
 =====================
 
 Developed By:
-Stephen Dang
-David Hwang
-Erik Pintar
+- Stephen Dang
+- David Hwang
+- Erik Pintar
 
 In Conjunction with:
-Cassie Taylor
-Ariel Norling
-Timmy Burkhart
+- Cassie Taylor
+- Ariel Norling
+- Timmy Burkhart
 
 
 Instructions
